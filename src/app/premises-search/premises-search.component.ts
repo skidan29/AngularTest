@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PremisesSearchService} from "./premises-search.service";
 import {Premises} from "./premises-search.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 interface FilterConfig {
   garage: boolean;
@@ -37,15 +38,15 @@ export class PremisesSearchComponent implements OnInit  {
 
     })
   }
+  public profileForm = new FormGroup({
+    flat: new FormControl(false),
+    office: new FormControl(false),
+    garage: new FormControl(false),
 
-  test(){
+  });
 
- this.configFilter = {
-      garage: false,
-      office: false,
-      flat: true,
-    }
-    this.premises = this.initPremises(this.configFilter)
+  onSubmit() {
+    this.premises = this.initPremises(this.profileForm.value)
   }
 
   initPremises(type: FilterConfig){

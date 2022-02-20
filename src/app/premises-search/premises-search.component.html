@@ -1,10 +1,29 @@
 <p>Помешения:</p>
-<button (click)="test()">Test</button>
 
-<form>
-  <input type="checkbox">
-  <input type="checkbox">
-  <input type="checkbox">
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <div class="search-form__wrap">
+    <label>
+      <input id="flat" type="checkbox" formControlName="flat">
+      <div class="search-form__wrap-item">Квартиры</div>
+    </label>
+  </div>
+
+  <div class="search-form__wrap">
+    <label>
+      <input id="office" type="checkbox"  formControlName="office">
+      <div class="search-form__wrap-item">Офисы</div>
+    </label>
+  </div>
+
+  <div class="search-form__wrap">
+    <label>
+      <input id="garage" type="checkbox"  formControlName="garage">
+      <div class="search-form__wrap-item">Гаражи</div>
+    </label>
+  </div>
+  <button type="submit">submit</button>
 </form>
 
 <div  *ngFor="let premise of premises">
