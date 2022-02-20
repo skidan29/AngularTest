@@ -1,3 +1,47 @@
-<p>premises-search works!</p>
+<p>Помешения:</p>
+<button (click)="test()">Test</button>
 
+<form>
+  <input type="checkbox">
+  <input type="checkbox">
+  <input type="checkbox">
+</form>
+
+<div  *ngFor="let premise of premises">
+
+<ul *ngIf="premise.type === 'flat'">
+  <li> _id:{{premise._id}}</li>
+  <li>number:{{premise.number}}</li>
+  <li>type:{{premise.type}}</li>
+  <li>floorNumber:{{premise.floorNumber}}</li>
+  <li>houseNumber:{{premise.houseNumber}}</li>
+  <li>sectionNumber:{{premise.sectionNumber}}</li>
+  <li> complexMod:{{premise.complexMod}}</li>
+  <li>roomsAmount:{{premise.roomsAmount}}</li>
+  <li>decorationType: {{premise.decorationType}}</li>
+</ul>
+
+  <ul *ngIf="premise.type === 'garage'">
+    <li> _id:{{premise._id}}</li>
+    <li>number:{{premise.number}}</li>
+    <li>type:{{premise.type}}</li>
+    <li>sectionNumber:{{premise.sectionNumber}}</li>
+    <li>parkingNumber:{{premise.parkingNumber}}</li>
+    <li>holdingCapacity:{{premise.holdingCapacity}}</li>
+    <li> withRepairPit:{{premise.withRepairPit}}</li>
+  </ul>
+
+  <ul *ngIf="premise.type === 'office'">
+    <li> _id:{{premise._id}}</li>
+    <li>number:{{premise.number}}</li>
+    <li>type:{{premise.type}}</li>
+    <li>sectionNumber:{{premise.sectionNumber}}</li>
+    <li>floorNumber:{{premise.floorNumber}}</li>
+    <li>houseNumber:{{premise.houseNumber}}</li>
+    <li>roomsAmount:{{premise.roomsAmount}}</li>
+    <li>decorationType:{{premise.decorationType}}</li>
+    <li>atBusinessComplex:{{premise.atBusinessComplex}}</li>
+  </ul>
+
+</div>
 
