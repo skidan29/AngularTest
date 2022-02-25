@@ -1,1 +1,43 @@
-<p>premises-card works!</p>
+<section class="card">
+    <div class="card__nav" routerLink="/"><h4><-- Назад</h4></div>
+    <span>Цена: {{price}}</span>
+    <div class="snipet" [ngSwitch]="premise.type">
+
+        <ul class="snipet__item" *ngSwitchCase="'flat'">
+            <li> _id:{{premise._id}}</li>
+            <li>number:{{premise.number}}</li>
+            <li>type:{{premise.type}}</li>
+            <li>floorNumber:{{premise.floorNumber}}</li>
+            <li>houseNumber:{{premise.houseNumber}}</li>
+            <li>sectionNumber:{{premise.sectionNumber}}</li>
+            <li> complexMod:{{premise.complexMod}}</li>
+            <li>roomsAmount:{{premise.roomsAmount}}</li>
+            <li>decorationType: {{premise.decorationType}}</li>
+            <button (click)="onCalcPrice()">Расчитать стоймость</button>
+        </ul>
+
+        <ul class="snipet__item" *ngSwitchCase="'garage'">
+            <li> _id:{{premise._id}}</li>
+            <li>number:{{premise.number}}</li>
+            <li>type:{{premise.type}}</li>
+            <li>sectionNumber:{{premise.sectionNumber}}</li>
+            <li>parkingNumber:{{premise.parkingNumber}}</li>
+            <li>holdingCapacity:{{premise.holdingCapacity}}</li>
+            <li> withRepairPit:{{premise.withRepairPit}}</li>
+            <button (click)="onCalcPrice()">Расчитать стоймость</button>
+        </ul>
+
+        <ul class="snipet__item" *ngSwitchCase="'office'">
+            <li> _id:{{premise._id}}</li>
+            <li>number:{{premise.number}}</li>
+            <li>type:{{premise.type}}</li>
+            <li>sectionNumber:{{premise.sectionNumber}}</li>
+            <li>floorNumber:{{premise.floorNumber}}</li>
+            <li>houseNumber:{{premise.houseNumber}}</li>
+            <li>roomsAmount:{{premise.roomsAmount}}</li>
+            <li>decorationType:{{premise.decorationType}}</li>
+            <li>atBusinessComplex:{{premise.atBusinessComplex}}</li>
+            <button (click)="onCalcPrice()">Расчитать стоймость</button>
+        </ul>
+    </div>
+</section>

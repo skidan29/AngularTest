@@ -1,66 +1,71 @@
-<p>Помешения:</p>
+<section class="search">
 
+    <form class="search-form" [formGroup]="profileForm" (change)="onChangeForm()">
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="search-form__wrap">
+            <label> <input id="flat" type="checkbox" formControlName="flat">
+                <div class="search-form__wrap-item">Квартиры</div>
+            </label>
+        </div>
 
-  <div class="search-form__wrap">
-    <label>
-      <input id="flat" type="checkbox" formControlName="flat">
-      <div class="search-form__wrap-item">Квартиры</div>
-    </label>
-  </div>
+        <div class="search-form__wrap">
+            <label> <input id="office" type="checkbox" formControlName="office">
+                <div class="search-form__wrap-item">Офисы</div>
+            </label>
+        </div>
 
-  <div class="search-form__wrap">
-    <label>
-      <input id="office" type="checkbox"  formControlName="office">
-      <div class="search-form__wrap-item">Офисы</div>
-    </label>
-  </div>
+        <div class="search-form__wrap">
+            <label> <input id="garage" type="checkbox" formControlName="garage">
+                <div class="search-form__wrap-item">Гаражи</div>
+            </label>
+        </div>
 
-  <div class="search-form__wrap">
-    <label>
-      <input id="garage" type="checkbox"  formControlName="garage">
-      <div class="search-form__wrap-item">Гаражи</div>
-    </label>
-  </div>
-  <button type="submit">submit</button>
-</form>
+    </form>
+    <button (click)="createPremise()">Добавить помещение</button>
 
-<div  *ngFor="let premise of premises">
+    <div class="search-output" *ngFor="let premise of premises">
 
-<ul *ngIf="premise.type === 'flat'">
-  <li> _id:{{premise._id}}</li>
-  <li>number:{{premise.number}}</li>
-  <li>type:{{premise.type}}</li>
-  <li>floorNumber:{{premise.floorNumber}}</li>
-  <li>houseNumber:{{premise.houseNumber}}</li>
-  <li>sectionNumber:{{premise.sectionNumber}}</li>
-  <li> complexMod:{{premise.complexMod}}</li>
-  <li>roomsAmount:{{premise.roomsAmount}}</li>
-  <li>decorationType: {{premise.decorationType}}</li>
-</ul>
+        <ul class="search-output__item" *ngIf="premise.type === 'flat'"
+            (click)="onTheRouteCard(premise)">
+            <li><img src="../../assets/plans/plan.svg"></li>
+            <li> _id:{{premise._id}}</li>
+            <li>number:{{premise.number}}</li>
+            <li>type:{{premise.type}}</li>
+            <li>floorNumber:{{premise.floorNumber}}</li>
+            <li>houseNumber:{{premise.houseNumber}}</li>
+            <li>sectionNumber:{{premise.sectionNumber}}</li>
+            <li> complexMod:{{premise.complexMod}}</li>
+            <li>roomsAmount:{{premise.roomsAmount}}</li>
+            <li>decorationType: {{premise.decorationType}}</li>
+        </ul>
 
-  <ul *ngIf="premise.type === 'garage'">
-    <li> _id:{{premise._id}}</li>
-    <li>number:{{premise.number}}</li>
-    <li>type:{{premise.type}}</li>
-    <li>sectionNumber:{{premise.sectionNumber}}</li>
-    <li>parkingNumber:{{premise.parkingNumber}}</li>
-    <li>holdingCapacity:{{premise.holdingCapacity}}</li>
-    <li> withRepairPit:{{premise.withRepairPit}}</li>
-  </ul>
+        <ul class="search-output__item" *ngIf="premise.type === 'garage'"
+            (click)="onTheRouteCard(premise)">
 
-  <ul *ngIf="premise.type === 'office'">
-    <li> _id:{{premise._id}}</li>
-    <li>number:{{premise.number}}</li>
-    <li>type:{{premise.type}}</li>
-    <li>sectionNumber:{{premise.sectionNumber}}</li>
-    <li>floorNumber:{{premise.floorNumber}}</li>
-    <li>houseNumber:{{premise.houseNumber}}</li>
-    <li>roomsAmount:{{premise.roomsAmount}}</li>
-    <li>decorationType:{{premise.decorationType}}</li>
-    <li>atBusinessComplex:{{premise.atBusinessComplex}}</li>
-  </ul>
+            <li><img src="../../assets/plans/plan.svg"></li>
+            <li> _id:{{premise._id}}</li>
+            <li>number:{{premise.number}}</li>
+            <li>type:{{premise.type}}</li>
+            <li>sectionNumber:{{premise.sectionNumber}}</li>
+            <li>parkingNumber:{{premise.parkingNumber}}</li>
+            <li>holdingCapacity:{{premise.holdingCapacity}}</li>
+            <li> withRepairPit:{{premise.withRepairPit}}</li>
+        </ul>
 
-</div>
+        <ul class="search-output__item" *ngIf="premise.type === 'office'"
+            (click)="onTheRouteCard(premise)">
+            <li><img src="../../assets/plans/plan.svg"></li>
+            <li> _id:{{premise._id}}</li>
+            <li>number:{{premise.number}}</li>
+            <li>type:{{premise.type}}</li>
+            <li>sectionNumber:{{premise.sectionNumber}}</li>
+            <li>floorNumber:{{premise.floorNumber}}</li>
+            <li>houseNumber:{{premise.houseNumber}}</li>
+            <li>roomsAmount:{{premise.roomsAmount}}</li>
+            <li>decorationType:{{premise.decorationType}}</li>
+            <li>atBusinessComplex:{{premise.atBusinessComplex}}</li>
+        </ul>
+    </div>
+</section>
+
 

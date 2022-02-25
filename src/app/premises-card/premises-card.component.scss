@@ -1,0 +1,14 @@
+.snipet {
+    width: 452px;
+    height: 382px;
+    border-radius: 4px;
+    background: #F9F9F9;
+
+    &__item {
+        list-style: none;
+
+        li {
+            border-bottom: 1px solid grey;
+        }
+    }
+}
