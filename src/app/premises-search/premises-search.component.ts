@@ -46,11 +46,15 @@ export class PremisesSearchComponent implements OnInit {
         this.premisesSearchService.httpServer().subscribe(data => {
             this.premisesData = data;
             this.initPremises(this.defaultConfigFilter);
+            console.log(
+              this.premisesSearchService.createFlat(),
+
+            )
         });
     }
 
-    createPremise() {
-        console.log('создать помещение');
+    createObject() {
+        this.premises.push(this.premisesSearchService.createObject(this.premisesSearchService.setRandomNumber(2)));
     }
 
     public profileForm = new FormGroup({
