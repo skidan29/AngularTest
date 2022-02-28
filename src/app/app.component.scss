@@ -7,5 +7,5 @@
 .container__footer {
     display: flex;
     justify-content: space-between;
-    width: 1000px;
+    width: calc(100% - 320px)
 }

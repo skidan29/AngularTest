@@ -1,11 +1,17 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 
 .search-form {
-
+    padding: 16px 160px;
     display: flex;
     align-items: center;
-    background: #F9F9F9;
+    background: #E5E5E5;
     height: 60px;
-    
+
     &__wrap {
         display: flex;
         align-items: flex-end;
@@ -41,7 +47,15 @@
     }
 }
 
+.create-button {
+    margin-top: 16px;
+    margin-left: 160px;
+    height: 38px;
+    padding: 10px;
+}
+
 .search-output {
+    margin-left: 150px;
 
     &__item {
         list-style: none;
