@@ -111,7 +111,7 @@ export class PremisesSearchService {
       return str.substring(0, length);
     }
 
-    public createGarage(){
+    public createGarage(){ // Нигде нет возвращаемых типов данных функций
       return{
         _id: this.setRandomNumber(1000000),
         number: this.setRandomNumber(100),

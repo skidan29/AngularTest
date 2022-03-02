@@ -1,3 +1,12 @@
+/**
+ * Очень плохое разбиение на компоненты.
+ *
+ * Хоть проект и небольшой, его цель -- показать, как вы усвоили всю информацию,
+ * которую я вам предоставлял. Код сам по себе чистый, но его архитектура оставляет
+ * желать лучшего.
+ */
+
+
 import {
     Component,
     OnInit,
@@ -27,6 +36,7 @@ interface FilterConfig {
 
 export class PremisesSearchComponent implements OnInit {
 
+    // Использование типа `any` -- дурной тон в работе с TypeScript
     public premisesData: any;
     public premises: any;
 
@@ -46,6 +56,7 @@ export class PremisesSearchComponent implements OnInit {
         this.premisesSearchService.httpServer().subscribe(data => {
             this.premisesData = data;
             this.initPremises(this.defaultConfigFilter);
+            // FIXME `console.log` разбился на несколько строк
             console.log(
               this.premisesSearchService.createFlat(),
 
@@ -92,6 +103,7 @@ export class PremisesSearchComponent implements OnInit {
         return this.premisesData.filter((i: Premises) => i.type === type);
     }
 
+    // FIXME невнятное название метода. Оно ничего о его роли не говорит
     public onTheRouteCard(premise: Premises) {
         this.router.navigate(['card'], { queryParams: premise });
     }
