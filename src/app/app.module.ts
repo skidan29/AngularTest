@@ -11,6 +11,8 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+// маршруты лучше выделять в отдельный модуль
+// например, в app-routing.module.ts
 const appRoutes: Routes = [
     { path: '', component: PremisesSearchComponent },
     { path: 'card', component: PremisesCardComponent },
@@ -25,7 +27,7 @@ const appRoutes: Routes = [
     imports: [
         ReactiveFormsModule,
         BrowserModule,
-        AppRoutingModule,
+        AppRoutingModule, // Зачем импортировать этот модуль, если снизу роутинг уже подключил свой?
         RouterModule.forRoot(appRoutes),
     ],
     providers: [],

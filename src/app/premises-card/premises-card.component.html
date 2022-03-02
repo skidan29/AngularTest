@@ -11,6 +11,8 @@
     <div class="card_price">Цена: <span>{{price}}</span></div>
     <div class="snipet" [ngSwitch]="premise.type">
 
+        <!--    Очень нагруженный HTML. Почему бы не найти общее и шаблонизировать?    -->
+
         <ul class="snipet__item" *ngSwitchCase="'flat'">
             <li> _id:{{premise._id}}</li>
             <li>number:{{premise.number}}</li>

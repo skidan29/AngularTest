@@ -10,7 +10,7 @@ export class PremisesCardService {
     }
 
     public setPrice(premise: any) {
-        switch (premise.type) {
+        switch (premise.type) { // Я бы хотел для этой задачи увидеть паттерн "Стратегия"
             case 'garage':
                 return this.setPriceGarage(premise);
             case 'flat':
@@ -22,6 +22,7 @@ export class PremisesCardService {
         }
     }
 
+    // FIXME Методы не должны вызываться извне -- значит, они должны быть приватными!
     public setPriceGarage(premise: any) {
         const sn = premise.sectionNumber;
         const pn = premise.parkingNumber;

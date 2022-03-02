@@ -26,6 +26,8 @@
 
     <div class="search-output" *ngFor="let premise of premises">
 
+        <!--    Очень нагруженный HTML. Почему бы не найти общее и шаблонизировать?    -->
+
         <ul class="search-output__item" *ngIf="premise.type === 'flat'"
             (click)="onTheRouteCard(premise)">
             <li><img src="../../assets/plans/plan.svg"></li>
