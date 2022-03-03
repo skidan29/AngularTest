@@ -16,6 +16,7 @@ import {
     templateUrl: './premises-card.component.html',
     styleUrls: ['./premises-card.component.scss'],
 })
+
 export class PremisesCardComponent implements OnInit, OnDestroy {
     public premise: any;
     public price: number = 0;
@@ -27,15 +28,15 @@ export class PremisesCardComponent implements OnInit, OnDestroy {
     ) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.initPremise();
     }
 
-    public onCalcPrice() {
+    public onCalcPrice(): void {
         this.price = this.premisesCardService.setPrice(this.premise);
     };
 
-    private initPremise() {
+    private initPremise(): void {
         this.activeRoute.queryParams.pipe(takeUntil(this.activeRouterSubject)).subscribe(params => {
                 this.premise = params;
             },

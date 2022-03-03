@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PremisesSearchComponent } from './premises-search/premises-search.component';
 import { PremisesCardComponent } from './premises-card/premises-card.component';
@@ -25,7 +24,6 @@ const appRoutes: Routes = [
     imports: [
         ReactiveFormsModule,
         BrowserModule,
-        AppRoutingModule,
         RouterModule.forRoot(appRoutes),
     ],
     providers: [],

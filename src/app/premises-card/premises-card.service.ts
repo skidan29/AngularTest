@@ -5,10 +5,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class PremisesCardService {
-
-    constructor() {
-    }
-
+    
     public setPrice(premise: any) {
         switch (premise.type) {
             case 'garage':

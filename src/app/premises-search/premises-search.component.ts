@@ -9,7 +9,6 @@ import {
     FormGroup,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { query } from '@angular/animations';
 
 
 interface FilterConfig {
@@ -46,11 +45,25 @@ export class PremisesSearchComponent implements OnInit {
         this.premisesSearchService.httpServer().subscribe(data => {
             this.premisesData = data;
             this.initPremises(this.defaultConfigFilter);
-            console.log(
-              this.premisesSearchService.createFlat(),
-
-            )
         });
+    }
+
+    initPremises(type: FilterConfig) {
+        const premises = [];
+        if (type.garage) {
+            premises.push(...this.filterPremises('garage'));
+        }
+        if (type.office) {
+            premises.push(...this.filterPremises('office'));
+        }
+        if (type.flat) {
+            premises.push(...this.filterPremises('flat'));
+        }
+        this.premises = premises;
+    }
+
+    private filterPremises(type: string) {
+        return this.premisesData.filter((i: Premises) => i.type === type);
     }
 
     createObject() {
@@ -73,27 +86,7 @@ export class PremisesSearchComponent implements OnInit {
         }
     }
 
-    initPremises(type: FilterConfig) {
-        const premises = [];
-        if (type.garage) {
-            premises.push(...this.filterPremises('garage'));
-        }
-        if (type.office) {
-            premises.push(...this.filterPremises('office'));
-        }
-        if (type.flat) {
-            premises.push(...this.filterPremises('flat'));
-        }
-
-        this.premises = premises;
-    }
-
-    private filterPremises(type: string) {
-        return this.premisesData.filter((i: Premises) => i.type === type);
-    }
-
     public onTheRouteCard(premise: Premises) {
         this.router.navigate(['card'], { queryParams: premise });
     }
-
 }
