@@ -34,27 +34,26 @@ export class PremisesSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.premisesSearchService.httpServer().subscribe((data) => {
-      this.premisesData = data;
-      this.initPremises(this.defaultConfigFilter);
-      this.http
-        .get('http://localhost:3000/api/garages')
-        .subscribe((data) => console.log(data));
-    });
+    this.initPremises();
   }
 
-  initPremises(type: FilterConfig) {
-    const premises = [];
-    if (type.garage) {
-      premises.push(...this.filterPremises('garage'));
-    }
-    if (type.office) {
-      premises.push(...this.filterPremises('office'));
-    }
-    if (type.flat) {
-      premises.push(...this.filterPremises('flat'));
-    }
-    this.premises = premises;
+  initPremises() {
+    this.premises = [];
+    this.http.get('http://localhost:3000/api/garages').subscribe((data) => {
+      console.log(data);
+      this.premises = data;
+    });
+
+    //if (type.garage) {
+    //  premises.push(...this.filterPremises('garage'));
+    //}
+    //if (type.office) {
+    //  premises.push(...this.filterPremises('office'));
+    //}
+    //if (type.flat) {
+    //  premises.push(...this.filterPremises('flat'));
+    //}
+    //this.premises = premises;
   }
 
   private filterPremises(type: string) {
@@ -62,15 +61,14 @@ export class PremisesSearchComponent implements OnInit {
   }
 
   createObject() {
-    this.http
-      .post('http://localhost:3000/api/garages', { name: 12121 })
-      .subscribe((data) => console.log(data));
-
-    this.premises.push(
-      this.premisesSearchService.createObject(
-        this.premisesSearchService.setRandomNumber(2)
-      )
+    const newObject = this.premisesSearchService.createObject(
+      this.premisesSearchService.setRandomNumber(2)
     );
+    this.premises.push(newObject);
+
+    this.http
+      .post('http://localhost:3000/api/garages', newObject)
+      .subscribe((data) => console.log(data));
   }
 
   public profileForm = new FormGroup({
@@ -80,14 +78,14 @@ export class PremisesSearchComponent implements OnInit {
   });
 
   onChangeForm() {
-    const formValidation = Object.values(this.profileForm.value).find(
-      (value) => value === true
-    );
-    if (formValidation) {
-      this.initPremises(this.profileForm.value);
-    } else {
-      this.initPremises(this.defaultConfigFilter);
-    }
+    //const formValidation = Object.values(this.profileForm.value).find(
+    //  (value) => value === true
+    //);
+    //if (formValidation) {
+    //  this.initPremises(this.profileForm.value);
+    //} else {
+    //  this.initPremises(this.defaultConfigFilter);
+    //}
   }
 
   public onTheRouteCard(premise: Premises) {
