@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: PremisesSearchComponent },
-  { path: 'card', component: PremisesCardComponent },
+  { path: 'card/:id', component: PremisesCardComponent },
 ];
 
 @NgModule({
