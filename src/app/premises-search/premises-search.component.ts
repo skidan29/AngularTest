@@ -3,19 +3,9 @@ import {
     OnInit,
 } from '@angular/core';
 import { PremisesSearchService } from './premises-search.service';
-import {
-    FormControl,
-    FormGroup,
-} from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Premises } from './premises.interfaces';
-
-interface FilterConfig {
-    garage: boolean;
-    office: boolean;
-    flat: boolean;
-}
+import {FilterConfig, Premise} from './premises.interfaces';
 
 @Component({
     selector: 'app-premises-search',
@@ -41,21 +31,21 @@ export class PremisesSearchComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.initPremises();
+        this.initPremisesData();
 
     }
 
-    initPremises() {
+    public initPremisesData(): void {
         this.premises = [];
         this.http.get('http://localhost:3000/api/premises')
         .subscribe((data) => {
             this.premisesData = data;
-            this.initFilterPremises(this.defaultConfigFilter);
+            this.initPremises(this.defaultConfigFilter);
         });
        ;
     }
 
-    initFilterPremises(type: FilterConfig){
+    private initPremises(type: FilterConfig):void{
     const premises=[]
     if (type.garage) {
       premises.push(...this.filterPremises('garage'));
@@ -69,39 +59,32 @@ export class PremisesSearchComponent implements OnInit {
     this.premises = premises
   }
 
-    private filterPremises(type: string) {
-        return this.premisesData.filter((i: Premises) => i.type === type);
+    private filterPremises(type: string): Premise[] {
+        return this.premisesData.filter((i: Premise) => i.type === type);
     }
 
-    createObject() {
+   public createObject():void {
         const newObject = this.premisesSearchService.createObject(
             this.premisesSearchService.setRandomNumber(3),
         );
         this.premises.push(newObject);
-
         this.http
             .post('http://localhost:3000/api/premises', newObject)
             .subscribe((data) => console.log(data));
     }
 
-    public profileForm = new FormGroup({
-        flat: new FormControl(false),
-        office: new FormControl(false),
-        garage: new FormControl(false),
-    });
-
-    onChangeForm() {
-        const formValidation = Object.values(this.profileForm.value).find(
+    public onChangeForm(config: FilterConfig):void {
+        const formValidation = Object.values(config).find(
          (value) => value === true
         );
         if (formValidation) {
-         this.initFilterPremises(this.profileForm.value);
+         this.initPremises(config);
         } else {
-        this.initFilterPremises(this.defaultConfigFilter);
+        this.initPremises(this.defaultConfigFilter);
         }
     }
 
-    public onTheRouteCard(id:string) {
+    public onLinkCard(id:string):void {
         this.router.navigate([`card/${id}`]);
     }
 }

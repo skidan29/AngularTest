@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FlatsInterfaces, GaragesInterfaces, OfficesInterfaces, Premises } from './premises.interfaces';
+import { FlatsInterfaces, GaragesInterfaces, OfficesInterfaces} from './premises.interfaces';
 
 
 @Injectable({
     providedIn: 'root',
 })
 export class PremisesSearchService {
-    constructor() {
-    }
 
     public setRandomNumber(max: number): number {
         return Math.floor(Math.random() * max);

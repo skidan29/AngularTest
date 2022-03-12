@@ -1,33 +1,13 @@
 <section class="search">
 
-    <form class="search-form" [formGroup]="profileForm" (change)="onChangeForm()">
-
-        <div class="search-form__wrap">
-            <label> <input id="flat" type="checkbox" formControlName="flat">
-                <div class="search-form__wrap-item">Квартиры</div>
-            </label>
-        </div>
-
-        <div class="search-form__wrap">
-            <label> <input id="office" type="checkbox" formControlName="office">
-                <div class="search-form__wrap-item">Офисы</div>
-            </label>
-        </div>
-
-        <div class="search-form__wrap">
-            <label> <input id="garage" type="checkbox" formControlName="garage">
-                <div class="search-form__wrap-item">Гаражи</div>
-            </label>
-        </div>
-
-    </form>
+    <app-filter-buttons (changeForm)="onChangeForm($event)"></app-filter-buttons>
 
     <button class="create-button" (click)="createObject()">Добавить помещение</button>
 
     <div class="search-output" *ngFor="let premise of premises">
 
         <ul class="search-output__item" *ngIf="premise.type === 'flat'"
-            (click)="onTheRouteCard(premise._id)">
+            (click)="onLinkCard(premise._id)">
             <li><img src="../../assets/plans/plan.svg"></li>
             <li> _id:{{premise._id}}</li>
             <li>number:{{premise.number}}</li>
@@ -41,7 +21,7 @@
         </ul>
 
         <ul class="search-output__item" *ngIf="premise.type === 'garage'"
-            (click)="onTheRouteCard(premise._id)">
+            (click)="onLinkCard(premise._id)">
 
             <li><img src="../../assets/plans/plan.svg"></li>
             <li> _id:{{premise._id}}</li>
@@ -54,7 +34,7 @@
         </ul>
 
         <ul class="search-output__item" *ngIf="premise.type === 'office'"
-            (click)="onTheRouteCard(premise._id)">
+            (click)="onLinkCard(premise._id)">
             <li><img src="../../assets/plans/plan.svg"></li>
             <li> _id:{{premise._id}}</li>
             <li>number:{{premise.number}}</li>

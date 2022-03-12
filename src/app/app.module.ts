@@ -6,6 +6,7 @@ import { PremisesCardComponent } from './premises-card/premises-card.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterButtonsComponent } from './premises-search/filter-buttons/filter-buttons.component';
 
 const appRoutes: Routes = [
   { path: '', component: PremisesSearchComponent },
@@ -13,7 +14,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, PremisesSearchComponent, PremisesCardComponent],
+  declarations: [AppComponent, PremisesSearchComponent, PremisesCardComponent, FilterButtonsComponent],
   imports: [
     HttpClientModule,
     ReactiveFormsModule,

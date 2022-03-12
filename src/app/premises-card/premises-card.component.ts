@@ -10,7 +10,7 @@ import {
     takeUntil,
 } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { FlatsInterfaces, GaragesInterfaces, OfficesInterfaces, Premises } from '../premises-search/premises.interfaces';
+import { Premise } from '../premises-search/premises.interfaces';
 
 @Component({
     selector: 'app-premises-card',
@@ -19,10 +19,10 @@ import { FlatsInterfaces, GaragesInterfaces, OfficesInterfaces, Premises } from 
 })
 
 export class PremisesCardComponent implements OnInit, OnDestroy {
-    public premise:any;
+    public premise: any;
     public price: number = 0;
     public activeRouterSubject = new Subject();
-    public premisesData:any;
+    public premisesData: any;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -39,7 +39,7 @@ export class PremisesCardComponent implements OnInit, OnDestroy {
         this.price = this.premisesCardService.setPrice(this.premise);
     };
 
-    initPremisesData() {
+    private initPremisesData():void {
       this.http.get('http://localhost:3000/api/premises')
       .subscribe((data) => {
           this.premisesData = data;
@@ -49,7 +49,7 @@ export class PremisesCardComponent implements OnInit, OnDestroy {
 
     private initPremise(): void {
         this.activeRoute.params.pipe(takeUntil(this.activeRouterSubject)).subscribe(params => {
-          this.premise = this.premisesData.filter((p: Premises) => p._id === params['id'])[0]
+          this.premise = this.premisesData.filter((p: Premise) => p._id === params['id'])[0]
           console.log(this.premise);
         });
     }
