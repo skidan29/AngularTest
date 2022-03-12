@@ -27,7 +27,7 @@
     <div class="search-output" *ngFor="let premise of premises">
 
         <ul class="search-output__item" *ngIf="premise.type === 'flat'"
-            (click)="onTheRouteCard(premise)">
+            (click)="onTheRouteCard(premise._id)">
             <li><img src="../../assets/plans/plan.svg"></li>
             <li> _id:{{premise._id}}</li>
             <li>number:{{premise.number}}</li>
@@ -41,7 +41,7 @@
         </ul>
 
         <ul class="search-output__item" *ngIf="premise.type === 'garage'"
-            (click)="onTheRouteCard(premise)">
+            (click)="onTheRouteCard(premise._id)">
 
             <li><img src="../../assets/plans/plan.svg"></li>
             <li> _id:{{premise._id}}</li>
@@ -54,7 +54,7 @@
         </ul>
 
         <ul class="search-output__item" *ngIf="premise.type === 'office'"
-            (click)="onTheRouteCard(premise)">
+            (click)="onTheRouteCard(premise._id)">
             <li><img src="../../assets/plans/plan.svg"></li>
             <li> _id:{{premise._id}}</li>
             <li>number:{{premise.number}}</li>

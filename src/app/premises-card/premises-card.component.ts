@@ -9,7 +9,8 @@ import {
     Subject,
     takeUntil,
 } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { FlatsInterfaces, GaragesInterfaces, OfficesInterfaces, Premises } from '../premises-search/premises.interfaces';
 
 @Component({
     selector: 'app-premises-card',
@@ -18,29 +19,39 @@ import {
 })
 
 export class PremisesCardComponent implements OnInit, OnDestroy {
-    public premise: any;
+    public premise:any;
     public price: number = 0;
     public activeRouterSubject = new Subject();
+    public premisesData:any;
 
     constructor(
         private activeRoute: ActivatedRoute,
         private premisesCardService: PremisesCardService,
+        private http: HttpClient
     ) {
     }
 
     public ngOnInit(): void {
-        this.initPremise();
+      this.initPremisesData();
     }
 
     public onCalcPrice(): void {
         this.price = this.premisesCardService.setPrice(this.premise);
     };
 
+    initPremisesData() {
+      this.http.get('http://localhost:3000/api/premises')
+      .subscribe((data) => {
+          this.premisesData = data;
+          this.initPremise();
+      });
+    }
+
     private initPremise(): void {
-        this.activeRoute.queryParams.pipe(takeUntil(this.activeRouterSubject)).subscribe(params => {
-                this.premise = params;
-            },
-        );
+        this.activeRoute.params.pipe(takeUntil(this.activeRouterSubject)).subscribe(params => {
+          this.premise = this.premisesData.filter((p: Premises) => p._id === params['id'])[0]
+          console.log(this.premise);
+        });
     }
 
     public ngOnDestroy(): void {

@@ -1,5 +1,5 @@
 export interface OfficesInterfaces {
-  _id?: string;
+  _id?: any;
   number: number;
   type: string;
   sectionNumber: number;
@@ -11,7 +11,7 @@ export interface OfficesInterfaces {
 }
 
 export interface FlatsInterfaces {
-  _id?: string;
+  _id?: any;
   number: number;
   type: string;
   sectionNumber: number;
@@ -23,7 +23,7 @@ export interface FlatsInterfaces {
 }
 
 export interface GaragesInterfaces {
-  _id?: string;
+  _id?: any;
   number: number;
   type: string;
   sectionNumber: number;
@@ -31,3 +31,21 @@ export interface GaragesInterfaces {
   holdingCapacity?: number;
   withRepairPit?: boolean;
 }
+
+export interface Premises {
+  _id?: any;
+  number: number;
+  type: string;
+  sectionNumber: number;
+  floorNumber?: number;
+  houseNumber?: number;
+  complexMod?: string;
+  decorationType?: string;
+  roomsAmount?: number;
+  atBusinessComplex?: boolean;
+  parkingNumber?: number;
+  holdingCapacity?: number;
+  withRepairPit?: boolean;
+}
+
+

@@ -8,6 +8,8 @@
         </svg>
         Назад
     </div>
+    <span *ngIf="!premise">Loading...</span>
+    <ng-container *ngIf="premise" >
     <div class="card_price">Цена: <span>{{price}}</span></div>
     <div class="snipet" [ngSwitch]="premise.type">
 
@@ -48,4 +50,5 @@
             <button class="snipet__button" (click)="onCalcPrice()">Расчитать стоймость</button>
         </ul>
     </div>
+  </ng-container>
 </section>

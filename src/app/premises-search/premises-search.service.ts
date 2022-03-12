@@ -1,21 +1,6 @@
 import { Injectable } from '@angular/core';
+import { FlatsInterfaces, GaragesInterfaces, OfficesInterfaces, Premises } from './premises.interfaces';
 
-
-export interface Premises {
-    _id?: number;
-    number: number;
-    type: string;
-    sectionNumber: number;
-    floorNumber?: number;
-    houseNumber?: number;
-    complexMod?: string;
-    decorationType?: string;
-    roomsAmount?: number;
-    atBusinessComplex?: boolean;
-    parkingNumber?: number;
-    holdingCapacity?: number;
-    withRepairPit?: boolean;
-}
 
 @Injectable({
     providedIn: 'root',
@@ -55,7 +40,7 @@ export class PremisesSearchService {
         return str.substring(0, length);
     }
 
-    public createGarage(): Premises {
+    public createGarage(): GaragesInterfaces {
         return {
             number: this.setRandomNumber(100),
             type: 'garage',
@@ -66,7 +51,7 @@ export class PremisesSearchService {
         };
     }
 
-    public createOffice(): Premises {
+    public createOffice(): OfficesInterfaces {
         return {
             number: this.setRandomNumber(100),
             type: 'office',
@@ -79,7 +64,7 @@ export class PremisesSearchService {
         };
     }
 
-    public createFlat(): Premises {
+    public createFlat(): FlatsInterfaces {
         return {
             number: this.setRandomNumber(100),
             type: 'flat',
@@ -92,7 +77,7 @@ export class PremisesSearchService {
         };
     }
 
-    public createObject(number: number): Premises {
+    public createObject(number: number): GaragesInterfaces | OfficesInterfaces | FlatsInterfaces {
         switch (number) {
             case 0:
                 return this.createFlat();

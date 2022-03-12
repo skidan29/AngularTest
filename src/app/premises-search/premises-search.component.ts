@@ -3,14 +3,13 @@ import {
     OnInit,
 } from '@angular/core';
 import { PremisesSearchService } from './premises-search.service';
-import { Premises } from './premises-search.service';
 import {
     FormControl,
     FormGroup,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import { Premises } from './premises.interfaces';
 
 interface FilterConfig {
     garage: boolean;
@@ -43,26 +42,32 @@ export class PremisesSearchComponent implements OnInit {
 
     ngOnInit(): void {
         this.initPremises();
+
     }
 
     initPremises() {
         this.premises = [];
-        this.http.get('http://localhost:3000/api/premises').subscribe((data) => {
-            console.log(data);
-            this.premises = data;
+        this.http.get('http://localhost:3000/api/premises')
+        .subscribe((data) => {
+            this.premisesData = data;
+            this.initFilterPremises(this.defaultConfigFilter);
         });
-
-        //if (type.garage) {
-        //  premises.push(...this.filterPremises('garage'));
-        //}
-        //if (type.office) {
-        //  premises.push(...this.filterPremises('office'));
-        //}
-        //if (type.flat) {
-        //  premises.push(...this.filterPremises('flat'));
-        //}
-        //this.premises = premises;
+       ;
     }
+
+    initFilterPremises(type: FilterConfig){
+    const premises=[]
+    if (type.garage) {
+      premises.push(...this.filterPremises('garage'));
+    }
+    if (type.office) {
+      premises.push(...this.filterPremises('office'));
+    }
+    if (type.flat) {
+     premises.push(...this.filterPremises('flat'));
+    }
+    this.premises = premises
+  }
 
     private filterPremises(type: string) {
         return this.premisesData.filter((i: Premises) => i.type === type);
@@ -86,17 +91,17 @@ export class PremisesSearchComponent implements OnInit {
     });
 
     onChangeForm() {
-        //const formValidation = Object.values(this.profileForm.value).find(
-        //  (value) => value === true
-        //);
-        //if (formValidation) {
-        //  this.initPremises(this.profileForm.value);
-        //} else {
-        //  this.initPremises(this.defaultConfigFilter);
-        //}
+        const formValidation = Object.values(this.profileForm.value).find(
+         (value) => value === true
+        );
+        if (formValidation) {
+         this.initFilterPremises(this.profileForm.value);
+        } else {
+        this.initFilterPremises(this.defaultConfigFilter);
+        }
     }
 
-    public onTheRouteCard(premise: Premises) {
-        this.router.navigate(['card'], { queryParams: premise });
+    public onTheRouteCard(id:string) {
+        this.router.navigate([`card/${id}`]);
     }
 }
