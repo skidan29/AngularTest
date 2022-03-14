@@ -5,19 +5,6 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class PremisesCardService {
-    
-    public setPrice(premise: any) {
-        switch (premise.type) {
-            case 'garage':
-                return this.setPriceGarage(premise);
-            case 'flat':
-                return this.setPriceFlat(premise);
-            case  'office':
-                return this.setPriceOffice(premise);
-            default:
-                return 0;
-        }
-    }
 
     public setPriceGarage(premise: any) {
         const sn = premise.sectionNumber;
