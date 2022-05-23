@@ -4,7 +4,10 @@ import {
     Store,
 } from '@ngrx/store';
 import { CountSate } from './reducers/count/count.reducer';
-import { Observable } from 'rxjs';
+import {
+    map,
+    Observable,
+} from 'rxjs';
 import {
     selectCount,
     selectUpdateAt,
@@ -24,6 +27,7 @@ export class AppComponent {
 
     public count$:Observable<number> = this.store$.pipe(select(selectCount));
     public updateAt$:Observable<number> = this.store$.pipe(select(selectUpdateAt));
+    public disableDecrease$:Observable<boolean> = this.count$.pipe(map(i=>i<=0))
     constructor(private store$: Store<CountSate>) {}
     public increase() {
         this.store$.dispatch(new CountIncreaseAction());

@@ -1,8 +1,8 @@
 <section>
     Изучение NgRX
     <button (click)="increase()">Increase</button>
-    <button (click)="decrease()">Decrease</button>
-    <button (click)="clear()">Clear</button>
+    <button [disabled]="disableDecrease$ | async" (click)="decrease()">Decrease</button>
+    <button [disabled]="disableDecrease$ | async" (click)="clear()">Clear</button>
     <div>
         <span>counter is: {{count$ | async}}; Update at: {{updateAt$ | async | date: "yyyy-mm-dd hh:mm:ss"}}</span>
     </div>

@@ -4,6 +4,7 @@ export enum countActionsType {
     increase='[COUNT] increase',
     decrease='[COUNT] decrease',
     clear='[COUNT] clear',
+    updatedAt='[COUNT] updatedAt'
 }
 
 export class CountIncreaseAction implements Action {
@@ -17,5 +18,11 @@ export class CountDecreaseAction implements Action {
 export class CountClearAction implements Action {
     readonly type = countActionsType.clear
 }
+export class CountUpdatedAtAction implements Action {
+    readonly type = countActionsType.updatedAt
+    constructor(private payload: {
+        updatedAt: number;
+    }) {}
+}
 
-export type CountActions = CountClearAction | CountDecreaseAction | CountIncreaseAction;
+export type CountActions = CountClearAction | CountDecreaseAction | CountIncreaseAction | CountUpdatedAtAction;
