@@ -7,7 +7,12 @@ import {
 } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { reducers, metaReducers } from './reducers';
 
 const appRoutes: Routes = [
     { path: '', component: AppComponent },
@@ -20,6 +25,13 @@ const appRoutes: Routes = [
         ReactiveFormsModule,
         BrowserModule,
         RouterModule.forRoot(appRoutes),
+        StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+        StoreRouterConnectingModule.forRoot(),
+        StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
     ],
     providers: [],
     bootstrap: [AppComponent],
