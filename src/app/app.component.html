@@ -3,8 +3,14 @@
     <button (click)="increase()">Increase</button>
     <button [disabled]="disableDecrease$ | async" (click)="decrease()">Decrease</button>
     <button [disabled]="disableDecrease$ | async" (click)="clear()">Clear</button>
+    <button (click)="square()">x2</button>
     <div>
         <span>counter is: {{count$ | async}}; Update at: {{updateAt$ | async | date: "yyyy-mm-dd hh:mm:ss"}}</span>
     </div>
+
+    Color circle:
+    <button (click)="red()">red</button>
+    <button (click)="black()">black</button>
+    <div class="circle" [style.background-color]="color$ | async"></div>
 </section>
 

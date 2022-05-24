@@ -16,17 +16,25 @@ import {
     CountClearAction,
     CountDecreaseAction,
     CountIncreaseAction,
+    CountSquareAction,
 } from './reducers/count/count.actions';
+import { selectColor } from './reducers/color/color.selectors';
+import {
+    ColorBlackAction,
+    ColorRedAction,
+} from './reducers/color/color.action';
 
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
 
     public count$:Observable<number> = this.store$.pipe(select(selectCount));
     public updateAt$:Observable<number> = this.store$.pipe(select(selectUpdateAt));
+    public color$:Observable<string> = this.store$.pipe(select(selectColor));
     public disableDecrease$:Observable<boolean> = this.count$.pipe(map(i=>i<=0))
     constructor(private store$: Store<CountSate>) {}
     public increase() {
@@ -40,5 +48,17 @@ export class AppComponent {
 
     public clear() {
         this.store$.dispatch(new CountClearAction());
+    }
+
+    public square() {
+        this.store$.dispatch(new CountSquareAction());
+    }
+
+    public red() {
+        this.store$.dispatch(new ColorRedAction());
+    }
+
+    public black() {
+        this.store$.dispatch(new ColorBlackAction());
     }
 }

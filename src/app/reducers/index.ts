@@ -8,13 +8,20 @@ import {
     countReducer,
     CountSate,
 } from './count/count.reducer';
+import {
+    colorNode,
+    colorReducer,
+    ColorState,
+} from './color/color.reducer';
 
 export interface State {
-    [countNode]: CountSate
+    [countNode]: CountSate,
+    [colorNode]: ColorState
 }
 
 export const reducers: ActionReducerMap<State> = {
     [countNode]: countReducer,
+    [colorNode]: colorReducer,
 };
 
 

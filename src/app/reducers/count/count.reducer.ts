@@ -19,11 +19,11 @@ export const countReducer = (state = initialState, action: any) => {
         case countActionsType.increase: return {...state, count: state.count+1,};
         case countActionsType.decrease: return {...state, count: state.count-1,};
         case countActionsType.clear: return {...state, count: 0,};
+        case countActionsType.square: return {...state, count: state.count**2};
         case countActionsType.updatedAt: return {
             ...state,
             updatedAt: action.payload.updatedAt
         };
         default: return state;
     }
-    return state;
 }
