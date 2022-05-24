@@ -6,11 +6,11 @@ export enum colorType {
 }
 
 export class ColorBlackAction implements Action {
-    readonly type=colorType.black;
+    readonly type = colorType.black;
 }
 
 export class ColorRedAction implements Action {
-    readonly type=colorType.red;
+    readonly type = colorType.red;
 }
 
 export type ColorAction = ColorRedAction | ColorBlackAction;
