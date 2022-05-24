@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+} from '@angular/core';
 import {
     select,
     Store,
@@ -30,13 +34,24 @@ import {
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
     public count$:Observable<number> = this.store$.pipe(select(selectCount));
     public updateAt$:Observable<number> = this.store$.pipe(select(selectUpdateAt));
     public color$:Observable<string> = this.store$.pipe(select(selectColor));
     public disableDecrease$:Observable<boolean> = this.count$.pipe(map(i=>i<=0))
-    constructor(private store$: Store<CountSate>) {}
+
+    constructor(private store$: Store<CountSate>,
+                private elRef: ElementRef) {}
+
+    ngAfterViewInit(): void {
+
+
+
+    }
+
+
+
     public increase() {
         this.store$.dispatch(new CountIncreaseAction());
 
